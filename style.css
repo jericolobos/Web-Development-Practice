@@ -1,4 +1,26 @@
-/* Modern clean styling - works completely offline */
+/* Modern Premium Styling - Fully Offline Compatible */
+:root {
+    /* Core Colors */
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --primary-light: #e0e7ff;
+    --danger: #f43f5e;
+    --danger-hover: #e11d48;
+
+    /* Light Theme Backgrounds & Text */
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --border-color: #e2e8f0;
+    --input-bg: #f8fafc;
+
+    /* Layered Shadows for Depth */
+    --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 10px 25px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+    --shadow-hover: 0 20px 30px -10px rgba(99, 102, 241, 0.12);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -9,106 +31,123 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     max-width: 1000px;
     margin: 0 auto;
-    padding: 30px 20px;
-    background: #f4f6fa;
-    color: #2d3436;
-    transition: background-color 0.3s, color 0.3s;
+    padding: 40px 20px;
+    /* Uses the variables that our JavaScript updates! */
+    background: var(--bg-main);
+    color: var(--text-main);
+    /* Ensures changing to light blue or dark mode is buttery smooth */
+    transition: background 0.4s ease, color 0.4s ease;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* Header */
 h1 {
-    font-weight: 600;
-    font-size: 2.2rem;
-    color: #1e272e;
-    margin-bottom: 30px;
-    padding-bottom: 10px;
-    border-bottom: 3px solid #6c5ce7;
+    font-weight: 700;
+    font-size: 2.4rem;
+    color: var(--text-main);
+    margin-bottom: 35px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--primary);
     display: inline-block;
+    letter-spacing: -0.02em;
+    transition: color 0.3s ease;
 }
 
 /* Activity cards */
 section {
-    background: white;
-    border-radius: 16px;
-    padding: 25px;
-    margin-bottom: 25px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(0, 0, 0, 0.03);
-    transition: transform 0.2s;
+    background: var(--bg-card);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-color);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.4s ease;
 }
 
 section:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 15px 35px rgba(108, 92, 231, 0.1);
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-hover);
+    border-color: rgba(99, 102, 241, 0.3);
 }
 
 h2 {
-    font-weight: 500;
-    font-size: 1.4rem;
-    color: #1e272e;
-    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 1.35rem;
+    color: var(--text-main);
+    margin-bottom: 22px;
     display: flex;
     align-items: center;
+    letter-spacing: -0.01em;
+    transition: color 0.3s ease;
 }
 
-/* Using CSS content instead of symbol for offline compatibility */
+/* Bullet indicator */
 h2::before {
     content: "●";
-    color: #6c5ce7;
-    font-size: 1.5rem;
-    margin-right: 10px;
+    color: var(--primary);
+    font-size: 1.4rem;
+    margin-right: 12px;
     font-family: Arial, sans-serif;
 }
 
 /* Buttons */
 button {
-    background: #6c5ce7;
+    background: linear-gradient(135deg, var(--primary) 0%, #4f46e5 100%);
     color: white;
     border: none;
     padding: 12px 24px;
-    margin: 5px 10px 5px 0;
+    margin: 6px 10px 6px 0;
     border-radius: 50px;
     font-size: 0.95rem;
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s;
-    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
     font-family: inherit;
 }
 
 button:hover {
-    background: #5b4bc4;
-    transform: scale(1.02);
+    background: linear-gradient(135deg, var(--primary-hover) 0%, #4338ca 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.35);
+}
+
+button:active {
+    transform: translateY(0);
 }
 
 .delete-btn {
-    background: #ff7675;
-    padding: 6px 16px;
+    background: linear-gradient(135deg, var(--danger) 0%, #e11d48 100%);
+    padding: 8px 18px;
     font-size: 0.85rem;
+    box-shadow: 0 4px 12px rgba(244, 63, 94, 0.25);
 }
 
 .delete-btn:hover {
-    background: #d63031;
+    background: linear-gradient(135deg, var(--danger-hover) 0%, #be123c 100%);
+    box-shadow: 0 6px 16px rgba(244, 63, 94, 0.35);
 }
 
 /* Input fields */
-input[type="text"], 
+input[type="text"],
 input[type="number"] {
-    padding: 12px 18px;
-    margin: 5px 10px 5px 0;
-    border: 2px solid #e9ecef;
+    padding: 12px 20px;
+    margin: 6px 10px 6px 0;
+    border: 2px solid var(--border-color);
     border-radius: 50px;
     font-size: 0.95rem;
-    transition: all 0.2s;
-    background: #f8f9fa;
+    transition: all 0.3s ease;
+    background: var(--input-bg);
+    color: var(--text-main);
     font-family: inherit;
 }
 
 input[type="text"]:focus,
 input[type="number"]:focus {
     outline: none;
-    border-color: #6c5ce7;
-    background: white;
+    border-color: var(--primary);
+    background: var(--bg-card);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
 }
 
 /* Lists */
@@ -118,150 +157,142 @@ ul {
 }
 
 li {
-    background: #f8f9fa;
-    margin: 10px 0;
-    padding: 12px 20px;
+    background: var(--input-bg);
+    margin: 12px 0;
+    padding: 14px 22px;
     border-radius: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid #e9ecef;
-    transition: all 0.2s;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    color: var(--text-main);
 }
 
 li:hover {
-    background: white;
-    border-color: #6c5ce7;
+    background: var(--bg-card);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-sm);
 }
 
 /* Paragraphs that can be removed */
 .removable {
-    background: #f8f9fa;
-    padding: 15px 20px;
-    margin: 10px 0;
+    background: var(--input-bg);
+    padding: 16px 22px;
+    margin: 12px 0;
     border-radius: 50px;
-    border: 1px solid #e9ecef;
-    border-left: 4px solid #6c5ce7;
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--primary);
+    transition: all 0.3s ease;
+    color: var(--text-main);
 }
 
 /* Result and counter displays */
 #result {
     font-size: 2rem;
-    font-weight: 600;
-    color: #6c5ce7;
+    font-weight: 700;
+    color: var(--primary);
     margin-left: 10px;
     display: inline-block;
+    letter-spacing: -0.02em;
 }
 
 #charCount {
     font-weight: 600;
-    color: #6c5ce7;
-    font-size: 1.3rem;
-    background: #f0f3ff;
-    padding: 4px 12px;
+    color: var(--primary);
+    /* JS will swap this to --danger if > 20 chars */
+    font-size: 1.1rem;
+    background: var(--primary-light);
+    padding: 6px 14px;
     border-radius: 30px;
     margin-left: 8px;
     display: inline-block;
+    transition: all 0.3s ease;
+    /* Smooth transition when JS changes color to red */
 }
 
-/* Dark mode */
+/* 
+===========================================
+   Dark Mode Overrides (Triggered by JS)
+=========================================== 
+*/
 body.dark-mode {
-    background: #1a1b2f;
-    color: #e9ecef;
-}
-
-body.dark-mode section {
-    background: #2d2f45;
-    border-color: #3d3f5e;
-}
-
-body.dark-mode h1,
-body.dark-mode h2 {
-    color: #e9ecef;
-}
-
-body.dark-mode li {
-    background: #3d3f5e;
-    border-color: #5d5f7e;
-    color: #e9ecef;
-}
-
-body.dark-mode .removable {
-    background: #3d3f5e;
-    border-color: #5d5f7e;
-    color: #e9ecef;
-    border-left-color: #6c5ce7;
-}
-
-body.dark-mode input[type="text"],
-body.dark-mode input[type="number"] {
-    background: #3d3f5e;
-    border-color: #5d5f7e;
-    color: white;
+    --bg-main: #0b0f19;
+    --bg-card: #131d31;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-color: #1e293b;
+    --input-bg: #1a2744;
+    --primary-light: rgba(99, 102, 241, 0.15);
+    --shadow-md: 0 10px 25px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+    --shadow-hover: 0 20px 30px -10px rgba(99, 102, 241, 0.25);
 }
 
 body.dark-mode input::placeholder {
-    color: #a0a3c0;
+    color: #64748b;
     opacity: 1;
 }
 
-/* Responsive design - works on all devices */
+/* Responsive design */
 @media (max-width: 600px) {
     body {
-        padding: 15px;
+        padding: 20px 15px;
     }
-    
+
     section {
         padding: 20px;
     }
-    
+
     button {
         width: 100%;
-        margin: 5px 0;
+        margin: 6px 0;
     }
-    
+
     input[type="text"],
     input[type="number"] {
         width: 100%;
-        margin: 5px 0;
+        margin: 6px 0;
     }
-    
+
     li {
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
         text-align: center;
+        border-radius: 20px;
     }
-    
+
     li button {
         width: auto;
-        min-width: 100px;
+        min-width: 120px;
     }
-    
+
     h2::before {
         font-size: 1.2rem;
     }
 }
 
-/* Small touch for better readability */
+/* General typography enhancements */
 p {
-    line-height: 1.6;
-    margin: 10px 0;
+    line-height: 1.65;
+    margin: 12px 0;
+    color: var(--text-main);
+    transition: color 0.3s ease;
 }
 
-/* Add a little spacing between elements */
 br {
     display: none;
 }
 
-/* Make the image responsive */
+/* Image styling */
 img {
     max-width: 100%;
     height: auto;
-    border-radius: 12px;
-    border: 2px solid #e9ecef;
-    transition: border-color 0.2s;
+    border-radius: 16px;
+    border: 2px solid var(--border-color);
+    transition: border-color 0.3s ease, transform 0.3s ease;
 }
 
 img:hover {
-    border-color: #6c5ce7;
+    border-color: var(--primary);
+    transform: scale(1.02);
 }
